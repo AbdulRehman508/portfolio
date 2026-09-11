@@ -1,8 +1,8 @@
 name: Deploy portfolio to GitHub Pages
 
+# Manual only: the live site is deployed by Vercel. Enable Pages
+# (Settings -> Pages -> Source: GitHub Actions) before running this.
 on:
-  push:
-    branches: [portfolio]
   workflow_dispatch:
 
 permissions:
