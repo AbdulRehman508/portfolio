@@ -1,0 +1,120 @@
+<section class="section" id="contact">
+  <div class="container">
+    <header class="section__head" [appReveal]="0">
+      <span class="section__eyebrow">Contact</span>
+      <h2 class="section__title">Have a product that needs a solid frontend?</h2>
+      <p class="section__subtitle">
+        Tell me what you are building. I reply to every serious enquiry within a day.
+      </p>
+    </header>
+
+    <div class="contact">
+      <aside class="contact__aside" [appReveal]="60">
+        <div class="card contact__card">
+          <h3 class="contact__card-title">Direct channels</h3>
+          <ul class="contact__channels">
+            @for (channel of channels; track channel.label) {
+              <li>
+                <a
+                  [href]="channel.href"
+                  [attr.target]="channel.href.startsWith('http') ? '_blank' : null"
+                  rel="noopener"
+                >
+                  <span class="contact__channel-icon">
+                    <app-icon [name]="channel.icon" [size]="18" />
+                  </span>
+                  <span class="contact__channel-text">
+                    <small>{{ channel.label }}</small>
+                    <strong>{{ channel.value }}</strong>
+                  </span>
+                  <app-icon name="arrow-right" [size]="16" />
+                </a>
+              </li>
+            }
+          </ul>
+
+          <div class="contact__note">
+            <app-icon name="location" [size]="16" />
+            <span>{{ profile.location }} · available for remote work worldwide</span>
+          </div>
+        </div>
+      </aside>
+
+      <form class="card contact__form" [formGroup]="form" (ngSubmit)="submit()" [appReveal]="120" novalidate>
+        <div class="contact__row">
+          <label class="field">
+            <span class="field__label">Your name</span>
+            <input
+              class="field__input"
+              type="text"
+              formControlName="name"
+              autocomplete="name"
+              placeholder="Jane Cooper"
+              [class.is-invalid]="invalid('name')"
+            />
+            @if (invalid('name')) {
+              <small class="field__error">Please enter your name.</small>
+            }
+          </label>
+
+          <label class="field">
+            <span class="field__label">Email</span>
+            <input
+              class="field__input"
+              type="email"
+              formControlName="email"
+              autocomplete="email"
+              placeholder="jane@company.com"
+              [class.is-invalid]="invalid('email')"
+            />
+            @if (invalid('email')) {
+              <small class="field__error">Enter a valid email address.</small>
+            }
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="field__label">Subject</span>
+          <input
+            class="field__input"
+            type="text"
+            formControlName="subject"
+            placeholder="Angular dashboard for a logistics product"
+            [class.is-invalid]="invalid('subject')"
+          />
+          @if (invalid('subject')) {
+            <small class="field__error">Add a short subject.</small>
+          }
+        </label>
+
+        <label class="field">
+          <span class="field__label">Project details</span>
+          <textarea
+            class="field__input field__input--area"
+            formControlName="message"
+            rows="5"
+            placeholder="Scope, timeline, stack — whatever you already know."
+            [class.is-invalid]="invalid('message')"
+          ></textarea>
+          @if (invalid('message')) {
+            <small class="field__error">Tell me a bit more (20 characters minimum).</small>
+          }
+        </label>
+
+        <div class="contact__submit">
+          <button type="submit" class="btn btn--primary">
+            <app-icon name="send" [size]="16" />
+            Send message
+          </button>
+
+          @if (sent()) {
+            <p class="contact__sent" role="status">
+              <app-icon name="check" [size]="16" />
+              Your mail client should be open — if not, write to {{ profile.email }}.
+            </p>
+          }
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

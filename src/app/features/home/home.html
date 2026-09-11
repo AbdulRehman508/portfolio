@@ -1,0 +1,25 @@
+<a class="skip-link" href="#about">Skip to content</a>
+
+<app-header />
+
+<main id="main">
+  <app-hero />
+  <app-about />
+  <app-skills />
+  <app-experience />
+  <app-projects />
+  <app-strengths />
+  <app-contact />
+</main>
+
+<app-footer />
+
+<button
+  type="button"
+  class="to-top"
+  [class.is-visible]="condensed()"
+  (click)="toTop()"
+  aria-label="Back to top"
+>
+  <app-icon name="arrow-up" [size]="18" />
+</button>

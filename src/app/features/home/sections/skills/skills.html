@@ -1,0 +1,40 @@
+<section class="section" id="skills">
+  <div class="container">
+    <header class="section__head" [appReveal]="0">
+      <span class="section__eyebrow">Toolkit</span>
+      <h2 class="section__title">Skills that ship features, not demos</h2>
+      <p class="section__subtitle">
+        The stack I reach for daily — chosen for maintainability, speed and team velocity.
+      </p>
+    </header>
+
+    <div class="skills grid">
+      @for (group of groups; track group.title; let i = $index) {
+        <article class="card card--hover skills__card" [appReveal]="i * 90">
+          <span class="skills__icon">
+            <app-icon [name]="iconFor(group.icon)" [size]="22" />
+          </span>
+          <h3 class="skills__title">{{ group.title }}</h3>
+          <p class="skills__desc">{{ group.description }}</p>
+          <ul class="tag-list">
+            @for (skill of group.skills; track skill) {
+              <li class="tag">{{ skill }}</li>
+            }
+          </ul>
+        </article>
+      }
+    </div>
+  </div>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      @for (pass of [0, 1]; track pass) {
+        <ul class="ticker__list">
+          @for (skill of ticker; track skill) {
+            <li>{{ skill }}</li>
+          }
+        </ul>
+      }
+    </div>
+  </div>
+</section>

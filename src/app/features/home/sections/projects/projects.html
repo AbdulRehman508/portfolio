@@ -1,0 +1,78 @@
+<section class="section" id="projects">
+  <div class="container">
+    <header class="section__head" [appReveal]="0">
+      <span class="section__eyebrow">Selected work</span>
+      <h2 class="section__title">Products I helped put in front of real users</h2>
+      <p class="section__subtitle">
+        Enterprise systems, live data dashboards and marketing experiences — built with Angular at
+        the core.
+      </p>
+    </header>
+
+    <div class="filters" role="tablist" aria-label="Filter projects by category" [appReveal]="40">
+      @for (filter of filters; track filter) {
+        <button
+          type="button"
+          role="tab"
+          class="filters__btn"
+          [class.is-active]="activeFilter() === filter"
+          [attr.aria-selected]="activeFilter() === filter"
+          (click)="setFilter(filter)"
+        >
+          {{ filter }}
+        </button>
+      }
+    </div>
+
+    <div class="projects grid">
+      @for (project of visibleProjects(); track project.title; let i = $index) {
+        <article
+          class="card card--hover project"
+          [style.--accent]="project.accent"
+          [appReveal]="i * 90"
+        >
+          <div class="project__head">
+            <span class="project__index">{{ pad(i + 1) }}</span>
+            <span class="tag tag--brand">{{ project.category }}</span>
+          </div>
+
+          <h3 class="project__title">{{ project.title }}</h3>
+          <p class="project__role">
+            <app-icon name="code" [size]="14" />
+            {{ project.role }}
+          </p>
+          <p class="project__summary">{{ project.summary }}</p>
+
+          @if (expanded() === project.title) {
+            <ul class="project__highlights">
+              @for (highlight of project.highlights; track highlight) {
+                <li>
+                  <app-icon name="check" [size]="15" />
+                  <span>{{ highlight }}</span>
+                </li>
+              }
+            </ul>
+          }
+
+          <button
+            type="button"
+            class="project__toggle"
+            (click)="toggle(project.title)"
+            [attr.aria-expanded]="expanded() === project.title"
+          >
+            {{ expanded() === project.title ? 'Hide details' : 'What I built' }}
+            <app-icon [name]="expanded() === project.title ? 'arrow-up' : 'arrow-right'" [size]="15" />
+          </button>
+
+          <ul class="tag-list project__stack">
+            @for (tech of project.stack; track tech) {
+              <li class="tag">{{ tech }}</li>
+            }
+          </ul>
+        </article>
+      } @empty {
+        <p class="projects__empty">No projects in this category yet.</p>
+      }
+    </div>
+  </div>
+</section>

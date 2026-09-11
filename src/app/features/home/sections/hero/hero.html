@@ -1,0 +1,105 @@
+<section class="hero" id="top">
+  <div class="hero__bg" aria-hidden="true">
+    <span class="hero__blob hero__blob--one"></span>
+    <span class="hero__blob hero__blob--two"></span>
+    <span class="hero__grid"></span>
+  </div>
+
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <p class="hero__status" [appReveal]="0">
+        <span class="hero__dot"></span>
+        {{ profile.availability }}
+      </p>
+
+      <h1 class="hero__title" [appReveal]="80">
+        <span class="hero__hi">Hi, I'm</span>
+        <span class="text-gradient">{{ profile.name }}</span>
+      </h1>
+
+      <p class="hero__roles" [appReveal]="140" aria-live="polite">
+        <app-icon name="code" [size]="18" />
+        <span class="hero__role-track">
+          @for (role of roles; track role; let i = $index) {
+            <span class="hero__role" [class.is-active]="roleIndex() === i">{{ role }}</span>
+          }
+        </span>
+      </p>
+
+      <p class="hero__summary" [appReveal]="200">{{ profile.summary }}</p>
+
+      <div class="hero__actions" [appReveal]="260">
+        <a class="btn btn--primary" href="#projects">
+          View my work
+          <app-icon name="arrow-right" [size]="16" />
+        </a>
+        <a class="btn btn--ghost" [href]="profile.resumeUrl" [attr.download]="profile.resumeFileName" type="application/pdf">
+          <app-icon name="download" [size]="16" />
+          Download CV
+        </a>
+      </div>
+
+      <ul class="hero__socials" [appReveal]="320">
+        @for (social of profile.socials; track social.label) {
+          <li>
+            <a
+              class="icon-btn"
+              [href]="social.url"
+              [attr.aria-label]="social.label"
+              [attr.target]="social.url.startsWith('http') ? '_blank' : null"
+              rel="noopener"
+            >
+              <app-icon [name]="social.icon" [size]="18" />
+            </a>
+          </li>
+        }
+        <li class="hero__location">
+          <app-icon name="location" [size]="16" />
+          {{ profile.location }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="hero__visual" [appReveal]="180">
+      <div class="hero__portrait">
+        <span class="hero__portrait-glow" aria-hidden="true"></span>
+
+        <div class="hero__frame">
+          @if (avatarFailed()) {
+            <span class="hero__initials" aria-hidden="true">AR</span>
+          } @else {
+            <img
+              class="hero__photo"
+              [src]="profile.avatar"
+              [alt]="profile.name + ' — ' + profile.role"
+              width="420"
+              height="520"
+              loading="eager"
+              fetchpriority="high"
+              (error)="onAvatarError()"
+            />
+          }
+          <span class="hero__frame-veil" aria-hidden="true"></span>
+        </div>
+
+        <span class="hero__badge hero__badge--top">
+          <app-icon name="sparkle" [size]="16" />
+          4+ yrs Angular
+        </span>
+        <span class="hero__badge hero__badge--bottom">
+          <app-icon name="server" [size]="16" />
+          Full-stack ready
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <ul class="container hero__stats">
+    @for (stat of stats; track stat.label; let i = $index) {
+      <li class="hero__stat" [appReveal]="i * 90">
+        <strong>{{ stat.value }}</strong>
+        <span>{{ stat.label }}</span>
+      </li>
+    }
+  </ul>
+</section>

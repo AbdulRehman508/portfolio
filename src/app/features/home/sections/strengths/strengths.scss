@@ -1,0 +1,81 @@
+.strengths {
+  display: grid;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  align-items: start;
+}
+
+.strengths__principles,
+.strengths__side {
+  display: grid;
+  gap: 1rem;
+}
+
+.principle {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.principle__num {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--gradient-soft);
+  border: 1px solid var(--border);
+  color: var(--brand-400);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+
+.principle__title {
+  margin-bottom: 0.35rem;
+  font-size: 1.05rem;
+}
+
+.principle__body {
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+.strengths__card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+  color: var(--brand-400);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.strengths__list {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: var(--fs-sm);
+}
+
+.strengths__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  color: var(--text-muted);
+}
+
+.strengths__list app-icon {
+  flex: none;
+  margin-top: 0.2rem;
+  color: var(--accent-400);
+}
+
+@media (min-width: 940px) {
+  .strengths {
+    grid-template-columns: 1fr 1fr;
+  }
+}

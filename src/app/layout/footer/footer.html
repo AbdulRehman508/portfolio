@@ -1,0 +1,60 @@
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <span class="brand__mark">AR</span>
+      <p class="footer__tagline">
+        {{ profile.headline }}
+      </p>
+      <ul class="footer__socials">
+        @for (social of profile.socials; track social.label) {
+          <li>
+            <a
+              class="icon-btn"
+              [href]="social.url"
+              [attr.aria-label]="social.label"
+              [attr.target]="social.url.startsWith('http') ? '_blank' : null"
+              rel="noopener"
+            >
+              <app-icon [name]="social.icon" [size]="18" />
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <nav class="footer__col" aria-label="Footer navigation">
+      <h3 class="footer__title">Explore</h3>
+      <ul class="footer__links">
+        @for (item of navItems; track item.id) {
+          <li><a [href]="'#' + item.id">{{ item.label }}</a></li>
+        }
+      </ul>
+    </nav>
+
+    <div class="footer__col">
+      <h3 class="footer__title">Get in touch</h3>
+      <ul class="footer__links">
+        @for (channel of channels; track channel.label) {
+          <li>
+            <a
+              [href]="channel.href"
+              [attr.target]="channel.href.startsWith('http') ? '_blank' : null"
+              rel="noopener"
+            >
+              {{ channel.value }}
+            </a>
+          </li>
+        }
+        <li class="footer__muted">{{ profile.location }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer__bar">
+    <p>&copy; {{ year }} {{ profile.name }}. Built with Angular.</p>
+    <button type="button" class="footer__top" (click)="toTop()">
+      Back to top
+      <app-icon name="arrow-up" [size]="16" />
+    </button>
+  </div>
+</footer>

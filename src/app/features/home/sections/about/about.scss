@@ -1,0 +1,95 @@
+.about {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+}
+
+.about__story {
+  display: grid;
+  gap: 1.1rem;
+  color: var(--text-muted);
+  font-size: clamp(1rem, 1.2vw, 1.06rem);
+}
+
+.about__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  color: var(--brand-400);
+  font-weight: 600;
+  transition: gap var(--dur) var(--ease);
+}
+
+.about__link:hover {
+  gap: 0.85rem;
+}
+
+.about__side {
+  display: grid;
+  gap: 1rem;
+}
+
+.about__card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+  color: var(--brand-400);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.about__facts dl {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+}
+
+.about__fact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.about__fact:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.about__fact dt {
+  color: var(--text-dim);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.about__fact dd {
+  margin: 0;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  text-align: right;
+}
+
+.about__degree {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.about__institute {
+  margin-bottom: 0.85rem;
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+@media (min-width: 900px) {
+  .about {
+    grid-template-columns: 1.25fr 0.75fr;
+  }
+}

@@ -1,0 +1,319 @@
+.hero {
+  position: relative;
+  padding-top: calc(var(--header-h) + clamp(2.5rem, 7vw, 5rem));
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.55;
+  animation: float-slow 14s var(--ease) infinite;
+}
+
+.hero__blob--one {
+  top: -12%;
+  right: -6%;
+  width: min(46vw, 520px);
+  aspect-ratio: 1;
+  background: radial-gradient(circle, color-mix(in srgb, var(--brand-500) 70%, transparent), transparent 70%);
+}
+
+.hero__blob--two {
+  bottom: -18%;
+  left: -10%;
+  width: min(38vw, 430px);
+  aspect-ratio: 1;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent-400) 55%, transparent), transparent 70%);
+  animation-delay: -6s;
+}
+
+.hero__grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 20%, transparent 75%);
+  opacity: 0.35;
+}
+
+.hero__inner {
+  position: relative;
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--accent-400) 35%, var(--border));
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--accent-400) 10%, transparent);
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+}
+
+.hero__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-400);
+  animation: pulse-ring 2.4s infinite;
+}
+
+.hero__title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 1.35rem;
+  font-size: var(--fs-display);
+}
+
+.hero__hi {
+  color: var(--text-muted);
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.hero__roles {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  height: 2.1rem;
+  margin-top: 1rem;
+  color: var(--brand-400);
+  font-family: var(--font-mono);
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+}
+
+.hero__role-track {
+  position: relative;
+  display: block;
+  flex: 1;
+  height: 100%;
+}
+
+.hero__role {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(60%);
+  transition: opacity 420ms var(--ease), transform 420ms var(--ease);
+}
+
+.hero__role.is-active {
+  opacity: 1;
+  transform: none;
+}
+
+.hero__summary {
+  max-width: 56ch;
+  margin-top: 1.1rem;
+  color: var(--text-muted);
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.hero__socials {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0;
+  margin-top: 2rem;
+  list-style: none;
+}
+
+.hero__location {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 0.35rem;
+  color: var(--text-dim);
+  font-size: var(--fs-xs);
+}
+
+.hero__visual {
+  justify-self: center;
+  width: min(100%, 420px);
+}
+
+.hero__portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+}
+
+.hero__portrait-glow {
+  position: absolute;
+  inset: 8% -6% -6% 8%;
+  border-radius: 32px;
+  background: var(--gradient-brand);
+  opacity: 0.22;
+  filter: blur(36px);
+}
+
+.hero__frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 6px;
+  border-radius: 30px;
+  background: linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--brand-500) 55%, transparent),
+      transparent 42%,
+      color-mix(in srgb, var(--accent-400) 45%, transparent)
+    ),
+    var(--surface);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.hero__photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 900ms var(--ease);
+}
+
+.hero__frame:hover .hero__photo {
+  transform: scale(1.03);
+}
+
+/* Blends a studio-white backdrop into the page in dark mode. */
+.hero__frame-veil {
+  position: absolute;
+  inset: 6px;
+  border-radius: 24px;
+  background: linear-gradient(
+    180deg,
+    transparent 45%,
+    color-mix(in srgb, var(--bg) 55%, transparent) 88%,
+    color-mix(in srgb, var(--bg) 80%, transparent)
+  );
+  pointer-events: none;
+}
+
+.hero__initials {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 12vw, 7rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero__badge {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-md);
+  color: var(--text);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.hero__badge--top {
+  top: 1.25rem;
+  left: -1.1rem;
+  animation: float-slow 9s var(--ease) infinite;
+}
+
+.hero__badge--bottom {
+  bottom: 1.5rem;
+  right: -1.1rem;
+  color: var(--accent-400);
+  animation: float-slow 11s var(--ease) infinite;
+  animation-delay: -4s;
+}
+
+.hero__stats {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--border);
+  list-style: none;
+  overflow: hidden;
+}
+
+.hero__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 1.4rem clamp(1rem, 2vw, 1.75rem);
+  background: var(--surface);
+}
+
+.hero__stat strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero__stat span {
+  color: var(--text-dim);
+  font-size: var(--fs-xs);
+}
+
+/* The ambient glow needs to sit back further on a light ground. */
+:root[data-theme='light'] .hero__blob {
+  opacity: 0.3;
+}
+
+:root[data-theme='light'] .hero__portrait-glow {
+  opacity: 0.35;
+}
+
+@media (min-width: 900px) {
+  .hero__inner {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+
+  .hero__stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

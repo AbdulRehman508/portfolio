@@ -1,0 +1,33 @@
+.to-top {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  box-shadow: var(--shadow-md);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease),
+    color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+.to-top:hover {
+  border-color: var(--brand-500);
+  color: var(--brand-400);
+  transform: translateY(-3px);
+}

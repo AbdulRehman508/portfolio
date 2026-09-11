@@ -1,0 +1,102 @@
+/* Layout primitives ------------------------------------------------------ */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-gap);
+  scroll-margin-top: var(--header-h);
+}
+
+.section--alt {
+  background: var(--bg-soft);
+  border-block: 1px solid var(--border);
+}
+
+.section__head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  max-width: 58ch;
+  margin-bottom: clamp(2.25rem, 4vw, 3.5rem);
+}
+
+.section__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  align-self: flex-start;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--brand-400);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.section__eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+}
+
+.section__title {
+  font-size: var(--fs-h2);
+}
+
+.section__subtitle {
+  color: var(--text-muted);
+  font-size: clamp(0.98rem, 1.2vw, 1.08rem);
+}
+
+.grid {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.text-gradient {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 200;
+  translate: -50% -120%;
+  padding: 0.7rem 1.25rem;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  background: var(--brand-500);
+  color: #fff;
+  font-weight: 600;
+  transition: translate var(--dur) var(--ease);
+}
+
+.skip-link:focus-visible {
+  translate: -50% 0;
+}

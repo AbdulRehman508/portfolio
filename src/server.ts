@@ -25,13 +25,22 @@ const angularApp = new AngularNodeAppEngine();
  */
 
 /**
- * Serve static files from /browser
+ * Serve static files from /browser.
+ *
+ * `index` stays enabled: the portfolio is a single prerendered route, so `/` must serve the
+ * fully rendered `index.html` rather than falling through to the client-side shell.
  */
 app.use(
   express.static(browserDistFolder, {
     maxAge: '1y',
-    index: false,
+    index: 'index.html',
     redirect: false,
+    setHeaders: (res, path) => {
+      // Hashed bundles can cache forever; HTML must not.
+      if (path.endsWith('.html')) {
+        res.setHeader('Cache-Control', 'no-cache');
+      }
+    },
   }),
 );
 

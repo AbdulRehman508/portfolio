@@ -1,0 +1,54 @@
+<section class="section section--alt" id="strengths">
+  <div class="container">
+    <header class="section__head" [appReveal]="0">
+      <span class="section__eyebrow">How I work</span>
+      <h2 class="section__title">Professional strengths</h2>
+      <p class="section__subtitle">
+        The working habits behind every project above — and what a team gets on day one.
+      </p>
+    </header>
+
+    <div class="strengths">
+      <div class="strengths__principles">
+        @for (principle of principles; track principle.title; let i = $index) {
+          <article class="card card--hover principle" [appReveal]="i * 90">
+            <span class="principle__num">{{ i + 1 }}</span>
+            <div>
+              <h3 class="principle__title">{{ principle.title }}</h3>
+              <p class="principle__body">{{ principle.body }}</p>
+            </div>
+          </article>
+        }
+      </div>
+
+      <div class="strengths__side">
+        <div class="card" [appReveal]="120">
+          <h3 class="strengths__card-title">
+            <app-icon name="check" [size]="18" />
+            Core competencies
+          </h3>
+          <ul class="strengths__list">
+            @for (skill of professionalSkills; track skill) {
+              <li>
+                <app-icon name="arrow-right" [size]="14" />
+                <span>{{ skill }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div class="card" [appReveal]="180">
+          <h3 class="strengths__card-title">
+            <app-icon name="sparkle" [size]="18" />
+            Outside the editor
+          </h3>
+          <ul class="tag-list">
+            @for (interest of interests; track interest) {
+              <li class="tag">{{ interest }}</li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

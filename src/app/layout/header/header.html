@@ -1,0 +1,90 @@
+<header class="header" [class.header--condensed]="condensed()">
+  <div class="header__inner container">
+    <a class="brand" href="#top" (click)="closeMenu()" aria-label="Back to top">
+      <span class="brand__mark">AR</span>
+      <span class="brand__text">
+        <strong>{{ profile.firstName }} {{ profile.lastName }}</strong>
+        <small>{{ profile.role }}</small>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Section navigation">
+      <ul class="nav__list">
+        @for (item of navItems; track item.id) {
+          <li>
+            <a
+              class="nav__link"
+              [class.is-active]="activeSection() === item.id"
+              [href]="'#' + item.id"
+              [attr.aria-current]="activeSection() === item.id ? 'true' : null"
+            >
+              {{ item.label }}
+            </a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <button
+        type="button"
+        class="icon-btn"
+        (click)="toggleTheme()"
+        [attr.aria-label]="isDark() ? 'Switch to light theme' : 'Switch to dark theme'"
+      >
+        <app-icon [name]="isDark() ? 'sun' : 'moon'" [size]="18" />
+      </button>
+
+      <a class="btn btn--primary btn--sm header__cta" [href]="profile.resumeUrl" [attr.download]="profile.resumeFileName" type="application/pdf">
+        <app-icon name="download" [size]="16" />
+        Resume
+      </a>
+
+      <button
+        type="button"
+        class="icon-btn header__burger"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="mobile-nav"
+        [attr.aria-label]="menuOpen() ? 'Close menu' : 'Open menu'"
+      >
+        <app-icon [name]="menuOpen() ? 'close' : 'menu'" [size]="20" />
+      </button>
+    </div>
+  </div>
+
+  <div class="header__progress" [style.--progress]="progress()" aria-hidden="true"></div>
+</header>
+
+@if (menuOpen()) {
+  <div class="drawer" id="mobile-nav">
+    <nav aria-label="Mobile navigation">
+      <ul class="drawer__list">
+        @for (item of navItems; track item.id) {
+          <li>
+            <a
+              class="drawer__link"
+              [class.is-active]="activeSection() === item.id"
+              [href]="'#' + item.id"
+              (click)="closeMenu()"
+            >
+              <span>{{ item.label }}</span>
+              <app-icon name="arrow-right" [size]="16" />
+            </a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <div class="drawer__foot">
+      <a class="btn btn--primary" [href]="'mailto:' + profile.email" (click)="closeMenu()">
+        <app-icon name="mail" [size]="16" />
+        Hire me
+      </a>
+      <a class="btn btn--ghost" [href]="profile.resumeUrl" [attr.download]="profile.resumeFileName" type="application/pdf" (click)="closeMenu()">
+        <app-icon name="download" [size]="16" />
+        Download CV
+      </a>
+    </div>
+  </div>
+}

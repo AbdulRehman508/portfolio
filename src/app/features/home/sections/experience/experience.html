@@ -1,0 +1,52 @@
+<section class="section section--alt" id="experience">
+  <div class="container">
+    <header class="section__head" [appReveal]="0">
+      <span class="section__eyebrow">Experience</span>
+      <h2 class="section__title">Where I have been building</h2>
+      <p class="section__subtitle">
+        From an R&D consortium to a client-facing digital agency — the same obsession with clean,
+        maintainable frontends.
+      </p>
+    </header>
+
+    <ol class="timeline">
+      @for (job of experiences; track job.company; let i = $index) {
+        <li class="timeline__item" [appReveal]="i * 120">
+          <span class="timeline__marker" [class.is-current]="job.current" aria-hidden="true"></span>
+
+          <article class="card timeline__card">
+            <div class="timeline__top">
+              <div>
+                <h3 class="timeline__role">{{ job.role }}</h3>
+                <p class="timeline__company">
+                  <app-icon name="briefcase" [size]="15" />
+                  {{ job.company }}
+                </p>
+              </div>
+              <span class="timeline__period" [class.is-current]="job.current">
+                {{ job.period }}
+              </span>
+            </div>
+
+            <p class="timeline__desc">{{ job.description }}</p>
+
+            <ul class="timeline__points">
+              @for (point of job.highlights; track point) {
+                <li>
+                  <app-icon name="check" [size]="16" />
+                  <span>{{ point }}</span>
+                </li>
+              }
+            </ul>
+
+            <ul class="tag-list">
+              @for (tech of job.stack; track tech) {
+                <li class="tag">{{ tech }}</li>
+              }
+            </ul>
+          </article>
+        </li>
+      }
+    </ol>
+  </div>
+</section>

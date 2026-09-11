@@ -1,0 +1,53 @@
+<section class="section section--alt" id="about">
+  <div class="container">
+    <header class="section__head" [appReveal]="0">
+      <span class="section__eyebrow">About me</span>
+      <h2 class="section__title">Engineer first, pixel-perfectionist second</h2>
+      <p class="section__subtitle">
+        Four years of shipping production Angular — and the habits that come with it.
+      </p>
+    </header>
+
+    <div class="about">
+      <div class="about__story" [appReveal]="60">
+        @for (paragraph of profile.about; track $index) {
+          <p>{{ paragraph }}</p>
+        }
+
+        <a class="about__link" [href]="'mailto:' + profile.email">
+          Let's talk about your product
+          <app-icon name="arrow-right" [size]="16" />
+        </a>
+      </div>
+
+      <aside class="about__side">
+        <div class="card about__facts" [appReveal]="120">
+          <h3 class="about__card-title">
+            <app-icon name="sparkle" [size]="18" />
+            Quick facts
+          </h3>
+          <dl>
+            @for (fact of facts; track fact.label) {
+              <div class="about__fact">
+                <dt>{{ fact.label }}</dt>
+                <dd>{{ fact.value }}</dd>
+              </div>
+            }
+          </dl>
+        </div>
+
+        @for (item of education; track item.institute) {
+          <div class="card about__education" [appReveal]="180">
+            <h3 class="about__card-title">
+              <app-icon name="graduation" [size]="18" />
+              Education
+            </h3>
+            <p class="about__degree">{{ item.degree }}</p>
+            <p class="about__institute">{{ item.institute }}</p>
+            <span class="tag tag--brand">{{ item.detail }}</span>
+          </div>
+        }
+      </aside>
+    </div>
+  </div>
+</section>

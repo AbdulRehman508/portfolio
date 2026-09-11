@@ -1,59 +1,80 @@
-# CodexAdmin
+# Abdul Rehman — Portfolio
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.4.
+Personal portfolio for **Abdul Rehman**, Software Engineer & Sr. Angular Developer.
+Built with Angular 20 (standalone components, signals, zoneless change detection) and
+server-side rendering with full static prerendering.
 
-## Development server
+## Highlights
 
-To start a local development server, run:
+- **Single-page portfolio** — hero, about, skills, experience timeline, project showcase,
+  strengths and a contact form.
+- **Dark / light theme** with system preference detection, `localStorage` persistence and a
+  no-flash inline script in `index.html`.
+- **Scroll-spy navigation** — active section highlighting, condensing header, reading-progress
+  bar and back-to-top button, all driven by one rAF-throttled scroll listener.
+- **Reveal-on-scroll** animations via `IntersectionObserver`, disabled automatically for
+  `prefers-reduced-motion` and never applied to server-rendered markup (content is visible
+  without JavaScript).
+- **SEO ready** — title/meta/Open Graph tags plus `Person` JSON-LD, emitted into the
+  prerendered HTML.
+- **Accessible** — landmarks, skip link, focus-visible styles, `aria-*` on nav, drawer and form.
+- **Zero UI dependencies** — no component library, no icon package; icons are inline SVG.
 
-```bash
-ng serve
+## Project structure
+
+```
+src/
+├─ styles/                      global design system (tokens, base, layout, components, motion)
+├─ index.html                   fonts, meta, no-flash theme bootstrap
+└─ app/
+   ├─ core/
+   │  ├─ data/portfolio.data.ts  ← ALL CV CONTENT LIVES HERE
+   │  ├─ models/                 typed domain models
+   │  └─ services/               theme, scroll-spy, SEO
+   ├─ shared/
+   │  ├─ components/icon/        inline SVG icon set
+   │  └─ directives/reveal       scroll reveal directive
+   ├─ layout/                    header (nav, theme toggle, drawer) + footer
+   └─ features/home/
+      ├─ home.ts                 page shell, section registration
+      └─ sections/               hero, about, skills, experience, projects, strengths, contact
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Editing the content
 
-## Code scaffolding
+Everything on the page comes from [`src/app/core/data/portfolio.data.ts`](src/app/core/data/portfolio.data.ts) —
+profile, stats, skills, jobs, projects, education and contact channels. Update that file and the
+whole site follows; no template edits needed.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Theme colours, spacing and type scale live in [`src/styles/_tokens.scss`](src/styles/_tokens.scss).
 
-```bash
-ng generate component component-name
-```
+## Assets
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+| File | Used for |
+| --- | --- |
+| `public/profile.jpg` | Hero portrait — 840×1050 (4:5), ~95 kB |
+| `public/Abdul_Rehman.pdf` | Resume / "Download CV" buttons (all three) |
+| `public/favicon.svg` | "AR" monogram tab icon (`favicon.ico` is the fallback) |
+| `design/pic.png` | Original 1024×1536 portrait — source only, **not** published |
 
-```bash
-ng generate --help
-```
+File names are set in `PROFILE.avatar` / `PROFILE.resumeUrl`. The CV saves to the visitor's
+machine as `Abdul-Rehman-CV.pdf` regardless of the stored name (`PROFILE.resumeFileName`).
 
-## Building
+To regenerate the portrait from a new source image, crop it to 4:5 and export around 840×1050
+as JPEG — anything in `public/` ships as-is, so keep large originals in `design/`.
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Commands
 
 ```bash
-ng test
+npm start          # dev server on http://localhost:4200
+npm run build      # production build + prerender into dist/codex-admin
+npm run serve:ssr:codex-admin   # run the SSR/Express server from dist
 ```
 
-## Running end-to-end tests
+## Deployment
 
-For end-to-end (e2e) testing, run:
+The production build prerenders the page to static HTML, so it can be hosted either way:
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Static hosting** (Netlify, Vercel, GitHub Pages, Firebase Hosting): publish
+  `dist/codex-admin/browser`.
+- **Node hosting**: run `node dist/codex-admin/server/server.mjs` (honours `PORT`).
