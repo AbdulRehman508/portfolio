@@ -63,6 +63,18 @@ machine as `Abdul-Rehman-CV.pdf` regardless of the stored name (`PROFILE.resumeF
 To regenerate the portrait from a new source image, crop it to 4:5 and export around 840×1050
 as JPEG — anything in `public/` ships as-is, so keep large originals in `design/`.
 
+## Contact form delivery
+
+The form posts to [FormSubmit](https://formsubmit.co) (no account, no key) and the message is
+emailed to `PROFILE.email`. **The first submission triggers a one-time activation email to that
+inbox — click the link in it, or nothing is delivered.** Send one test message from the live site
+to kick that off.
+
+To move to Web3Forms instead (dashboard, spam filtering, 250 free messages/month), paste a key
+into `web3FormsKey` in [`contact-form.config.ts`](src/app/core/config/contact-form.config.ts);
+the form switches provider on its own. If a send fails, the UI offers the visitor a mailto
+fallback so a message is never simply lost.
+
 ## Commands
 
 ```bash

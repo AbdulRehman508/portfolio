@@ -145,12 +145,44 @@
   margin-top: 0.25rem;
 }
 
-.contact__sent {
+.contact__botcheck {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.contact__status {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.45rem;
-  color: var(--accent-400);
+  color: var(--text-muted);
   font-size: var(--fs-xs);
+}
+
+.contact__status app-icon {
+  flex: none;
+  margin-top: 0.1rem;
+}
+
+.contact__status--ok {
+  color: var(--accent-400);
+}
+
+.contact__status--error {
+  color: #f87171;
+}
+
+.contact__retry {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: inherit;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 @media (min-width: 620px) {

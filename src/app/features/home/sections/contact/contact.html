@@ -101,17 +101,47 @@
           }
         </label>
 
+        <!-- Honeypot: hidden from people, irresistible to bots. -->
+        <input
+          class="contact__botcheck"
+          type="checkbox"
+          formControlName="botcheck"
+          tabindex="-1"
+          autocomplete="off"
+          aria-hidden="true"
+        />
+
         <div class="contact__submit">
-          <button type="submit" class="btn btn--primary">
+          <button type="submit" class="btn btn--primary" [disabled]="state() === 'sending'">
             <app-icon name="send" [size]="16" />
-            Send message
+            {{ state() === 'sending' ? 'Sending…' : 'Send message' }}
           </button>
 
-          @if (sent()) {
-            <p class="contact__sent" role="status">
-              <app-icon name="check" [size]="16" />
-              Your mail client should be open — if not, write to {{ profile.email }}.
-            </p>
+          @switch (state()) {
+            @case ('sent') {
+              <p class="contact__status contact__status--ok" role="status">
+                <app-icon name="check" [size]="16" />
+                Thanks — your message is on its way. I'll reply within a day.
+              </p>
+            }
+            @case ('mail-client') {
+              <p class="contact__status" role="status">
+                <app-icon name="mail" [size]="16" />
+                Your mail client should be open — if not, write to {{ profile.email }}.
+              </p>
+            }
+            @case ('error') {
+              <p class="contact__status contact__status--error" role="alert">
+                <app-icon name="mail" [size]="16" />
+                <span>
+                  That did not go through.
+                  <button type="button" class="contact__retry" (click)="openMailClient()">
+                    Send it by email instead
+                  </button>
+                  or write to {{ profile.email }}.
+                </span>
+              </p>
+            }
           }
         </div>
       </form>
