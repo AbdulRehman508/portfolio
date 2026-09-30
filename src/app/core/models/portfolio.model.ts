@@ -44,7 +44,12 @@ export interface Experience {
   readonly stack: readonly string[];
 }
 
-export type ProjectCategory = 'Enterprise' | 'AI & Data' | 'Real Estate' | 'Logistics';
+export type ProjectCategory =
+  | 'Enterprise'
+  | 'AI & Data'
+  | 'Real Estate'
+  | 'Logistics'
+  | 'Marketing & CRM';
 
 export interface Project {
   readonly title: string;

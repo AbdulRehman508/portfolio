@@ -19,7 +19,7 @@ export const PROFILE: Profile = {
     'I design, build and modernise web products — from layout to functionality — turning complex ERP, CRM and real-time dashboards into interfaces people actually enjoy using.',
   about: [
     'I specialise in designing, coding and modifying websites — from layout through to functionality — based on real client requirements. My focus is on building visually appealing, user-friendly and easy-to-navigate products.',
-    'Over the last four years I have shipped enterprise-grade Angular applications for real estate, warehousing, healthcare analytics and property development clients, working across the full stack with NestJS, Express and MongoDB when the product needs it.',
+    'Over the last four years I have shipped enterprise-grade Angular applications for real estate, retail and POS, HR and payroll, warehousing, healthcare analytics and influencer marketing clients, working across the full stack with NestJS, Express and MongoDB when the product needs it.',
     'I care about performance budgets, reusable component libraries and clean state management with NgRx, and I am equally comfortable owning a feature end-to-end or plugging into an existing team.',
   ],
   location: 'Faisalabad, Pakistan',
@@ -51,9 +51,9 @@ export const NAV_ITEMS: readonly NavItem[] = [
 
 export const STATS: readonly Stat[] = [
   { value: '4+', label: 'Years building for the web' },
-  { value: '6', label: 'Flagship products shipped' },
-  { value: '20+', label: 'Technologies in daily use' },
-  { value: '5', label: 'Industries shipped for' },
+  { value: '9', label: 'Flagship products shipped' },
+  { value: '25+', label: 'Technologies in daily use' },
+  { value: '8', label: 'Industries shipped for' },
 ];
 
 export const SKILL_GROUPS: readonly SkillGroup[] = [
@@ -67,19 +67,36 @@ export const SKILL_GROUPS: readonly SkillGroup[] = [
     title: 'UI & Design Systems',
     icon: 'layers',
     description: 'Pixel-accurate, accessible interfaces built on reusable design tokens.',
-    skills: ['SCSS', 'Tailwind CSS', 'PrimeNG', 'Angular Material', 'PSD to HTML', 'Wireframing'],
+    skills: [
+      'SCSS',
+      'Tailwind CSS',
+      'PrimeNG',
+      'Angular Material',
+      'Kendo UI',
+      'Syncfusion',
+      'AG Grid',
+      'PSD to HTML',
+    ],
   },
   {
     title: 'Backend & APIs',
     icon: 'server',
     description: 'Typed services, documented contracts and pragmatic data modelling.',
-    skills: ['NestJS', 'Express.js', 'REST APIs', 'MongoDB', 'Mongoose', 'Swagger'],
+    skills: ['NestJS', 'Express.js', 'REST APIs', 'JWT Auth', 'MongoDB', 'Mongoose', 'Swagger'],
   },
   {
     title: 'Product Domains',
     icon: 'briefcase',
     description: 'Business systems where workflow detail decides whether the product works.',
-    skills: ['ERP', 'CRM', 'Warehouse Management', 'Real Estate', 'Dashboards & Reporting'],
+    skills: [
+      'ERP',
+      'CRM',
+      'POS & Inventory',
+      'HR & Payroll',
+      'Warehouse Management',
+      'Real Estate',
+      'Dashboards & Reporting',
+    ],
   },
 ];
 
@@ -144,6 +161,58 @@ export const PROJECTS: readonly Project[] = [
     ],
     stack: ['Angular', 'TypeScript', 'RxJS', 'Tailwind CSS', 'REST APIs'],
     accent: '#10b981',
+  },
+  {
+    title: 'Multi-Branch Inventory & POS',
+    role: 'Full-Stack Developer',
+    category: 'Logistics',
+    summary:
+      'A multi-branch inventory and point-of-sale platform where every branch manages its own products, warehouse locations, customers and sales. Stock is tracked down to the exact bin, credit sales carry running customer balances, and receipts print on thermal hardware with scan-to-pay QR codes.',
+    highlights: [
+      'Bin-level stock tracking across branches, warehouses and locations',
+      'Credit sales with running customer balances and settlement history',
+      'Thermal receipt printing with scan-to-pay QR codes',
+      'Angular 20 frontend on a NestJS 11 + MongoDB API documented with Swagger',
+    ],
+    stack: ['Angular 20', 'TypeScript 5.9', 'PrimeNG 20', 'NestJS 11', 'MongoDB', 'Swagger'],
+    accent: '#14b8a6',
+  },
+  {
+    title: 'HR Management & Payroll System',
+    role: 'Angular Developer',
+    category: 'Enterprise',
+    summary:
+      'An HR and payroll platform streamlining employee records, attendance, leave, payroll processing, onboarding, compensation and compliance workflows — with a role-based dashboard built for day-long use by HR teams.',
+    highlights: [
+      'Payroll processing alongside attendance, leave and compensation workflows',
+      'Role-based access across onboarding, records and compliance modules',
+      'Dense reporting with AG Grid / Kendo Grid and Chart.js, Highcharts and ng2-charts',
+      'Client-side payslip and report export via jsPDF and html2canvas',
+    ],
+    stack: [
+      'Angular 10',
+      'TypeScript',
+      'Kendo UI',
+      'Syncfusion',
+      'AG Grid',
+      'Chart.js',
+      'JWT Auth',
+    ],
+    accent: '#0ea5e9',
+  },
+  {
+    title: 'MarketOgre',
+    role: 'Angular Developer',
+    category: 'Marketing & CRM',
+    summary:
+      'An influencer marketing and creator discovery platform where brands and agencies find influencers across social media, manage creator profiles and showcases, and run campaign requests, bids and conversations from authenticated dashboards.',
+    highlights: [
+      'Creator discovery and profile / showcase management across social platforms',
+      'Campaign requests, bidding and messaging between brands and creators',
+      'JWT-authenticated dashboards with CRM features on a REST API backend',
+    ],
+    stack: ['Angular 8', 'TypeScript', 'RxJS', 'Angular Material', 'Bootstrap 4', 'JWT'],
+    accent: '#f43f5e',
   },
   {
     title: 'Real Estate Management System',
