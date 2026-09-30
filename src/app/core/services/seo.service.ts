@@ -1,6 +1,7 @@
 import { DOCUMENT, Injectable, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 
+import { SITE, absoluteUrl } from '../config/site.config';
 import { PROFILE } from '../data/portfolio.data';
 
 /** Sets document metadata + Person JSON-LD so the prerendered page shares well. */
@@ -13,6 +14,7 @@ export class SeoService {
   apply(): void {
     const pageTitle = `${PROFILE.name} — ${PROFILE.role} & Sr. Angular Developer`;
     const description = PROFILE.summary;
+    const image = absoluteUrl(SITE.ogImage);
 
     this.title.setTitle(pageTitle);
 
@@ -30,9 +32,16 @@ export class SeoService {
         { property: 'og:title', content: pageTitle },
         { property: 'og:description', content: description },
         { property: 'og:locale', content: 'en_US' },
+        { property: 'og:site_name', content: PROFILE.name },
+        { property: 'og:image', content: image },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        { property: 'og:image:alt', content: `${PROFILE.name} — ${PROFILE.headline}` },
+        ...(SITE.url ? [{ property: 'og:url', content: absoluteUrl('') }] : []),
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: pageTitle },
         { name: 'twitter:description', content: description },
+        { name: 'twitter:image', content: image },
       ],
       true,
     );

@@ -5,6 +5,7 @@ import { ScrollSpyService } from '../../core/services/scroll-spy.service';
 import { SeoService } from '../../core/services/seo.service';
 import { Footer } from '../../layout/footer/footer';
 import { Header } from '../../layout/header/header';
+import { CommandPalette } from '../../shared/components/command-palette/command-palette';
 import { Icon } from '../../shared/components/icon/icon';
 import { About } from './sections/about/about';
 import { Contact } from './sections/contact/contact';
@@ -27,6 +28,7 @@ import { Strengths } from './sections/strengths/strengths';
     Strengths,
     Contact,
     Icon,
+    CommandPalette,
   ],
   templateUrl: './home.html',
   styleUrl: './home.scss',

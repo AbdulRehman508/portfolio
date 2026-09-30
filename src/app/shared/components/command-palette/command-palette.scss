@@ -1,0 +1,148 @@
+.palette {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: start center;
+  padding: clamp(1rem, 12vh, 8rem) 1rem 1rem;
+}
+
+.palette__scrim {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, #03050c 72%, transparent);
+  backdrop-filter: blur(4px);
+  animation: fade-slide-down 180ms var(--ease) both;
+}
+
+.palette__panel {
+  position: relative;
+  width: min(100%, 560px);
+  max-height: min(70vh, 560px);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg), var(--glow);
+  overflow: hidden;
+  animation: fade-slide-down 220ms var(--ease) both;
+}
+
+.palette__search {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.95rem 1.1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--brand-400);
+}
+
+.palette__input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.palette__input:focus {
+  outline: none;
+}
+
+.palette__input::placeholder {
+  color: var(--text-dim);
+}
+
+.palette__kbd,
+.palette__foot kbd {
+  padding: 0.15rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface-2);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
+.palette__list {
+  flex: 1;
+  padding: 0.5rem;
+  margin: 0;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.palette__group {
+  padding: 0.7rem 0.6rem 0.35rem;
+  color: var(--text-dim);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.palette__item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.6rem 0.65rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.palette__item.is-active {
+  background: color-mix(in srgb, var(--brand-500) 16%, transparent);
+  color: var(--text);
+}
+
+.palette__item.is-active app-icon {
+  color: var(--brand-400);
+}
+
+.palette__label {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.palette__hint {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+}
+
+.palette__empty {
+  padding: 1.5rem 0.65rem;
+  color: var(--text-dim);
+  font-size: var(--fs-sm);
+  text-align: center;
+}
+
+.palette__foot {
+  display: flex;
+  gap: 1rem;
+  padding: 0.6rem 1.1rem;
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-dim);
+  font-size: var(--fs-xs);
+}
+
+.palette__foot span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+@media (max-width: 560px) {
+  .palette__hint {
+    display: none;
+  }
+}

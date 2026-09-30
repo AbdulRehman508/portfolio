@@ -11,7 +11,7 @@
     <div class="strengths">
       <div class="strengths__principles">
         @for (principle of principles; track principle.title; let i = $index) {
-          <article class="card card--hover principle" [appReveal]="i * 90">
+          <article class="card card--hover principle" appSpotlight [appReveal]="i * 90">
             <span class="principle__num">{{ i + 1 }}</span>
             <div>
               <h3 class="principle__title">{{ principle.title }}</h3>

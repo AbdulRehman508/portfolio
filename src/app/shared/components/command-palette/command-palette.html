@@ -1,0 +1,51 @@
+@if (isOpen()) {
+  <div class="palette" role="dialog" aria-modal="true" aria-label="Command palette">
+    <div class="palette__scrim" (click)="close()"></div>
+
+    <div class="palette__panel">
+      <div class="palette__search">
+        <app-icon name="sparkle" [size]="18" />
+        <input
+          #search
+          type="text"
+          class="palette__input"
+          placeholder="Jump to a section, project or action…"
+          aria-label="Search commands"
+          autocomplete="off"
+          spellcheck="false"
+          [value]="query()"
+          (input)="onQuery($any($event.target).value)"
+        />
+        <kbd class="palette__kbd">ESC</kbd>
+      </div>
+
+      <ul class="palette__list" role="listbox" aria-label="Commands">
+        @for (command of results(); track command.id; let i = $index) {
+          @if (groupOf(i); as group) {
+            <li class="palette__group" role="presentation">{{ group }}</li>
+          }
+          <li
+            class="palette__item"
+            role="option"
+            [class.is-active]="activeIndex() === i"
+            [attr.aria-selected]="activeIndex() === i"
+            (mouseenter)="activeIndex.set(i)"
+            (click)="run(command)"
+          >
+            <app-icon [name]="command.icon" [size]="16" />
+            <span class="palette__label">{{ command.label }}</span>
+            <span class="palette__hint">{{ command.hint }}</span>
+          </li>
+        } @empty {
+          <li class="palette__empty">Nothing matches that.</li>
+        }
+      </ul>
+
+      <footer class="palette__foot">
+        <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+        <span><kbd>↵</kbd> select</span>
+        <span><kbd>esc</kbd> close</span>
+      </footer>
+    </div>
+  </div>
+}

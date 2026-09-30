@@ -1,4 +1,36 @@
 <footer class="footer">
+  <div class="container">
+    <aside class="cta">
+      <div class="cta__copy">
+        <p class="cta__eyebrow">
+          <span class="cta__dot"></span>
+          {{ profile.availability }}
+        </p>
+        <h2 class="cta__title">Let's build something worth shipping.</h2>
+        <p class="cta__text">
+          Senior Angular work, full-stack when it helps. Tell me about the product and I'll tell you
+          how I'd approach it.
+        </p>
+      </div>
+
+      <div class="cta__actions">
+        <a class="btn btn--primary" [href]="'mailto:' + profile.email">
+          <app-icon name="mail" [size]="16" />
+          Start a conversation
+        </a>
+        <a
+          class="btn btn--ghost"
+          [href]="profile.resumeUrl"
+          [attr.download]="profile.resumeFileName"
+          type="application/pdf"
+        >
+          <app-icon name="download" [size]="16" />
+          Download CV
+        </a>
+      </div>
+    </aside>
+  </div>
+
   <div class="container footer__grid">
     <div class="footer__brand">
       <span class="brand__mark">AR</span>

@@ -3,10 +3,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { INTERESTS, PROFESSIONAL_SKILLS } from '../../../../core/data/portfolio.data';
 import { Icon } from '../../../../shared/components/icon/icon';
 import { RevealDirective } from '../../../../shared/directives/reveal.directive';
+import { SpotlightDirective } from '../../../../shared/directives/spotlight.directive';
 
 @Component({
   selector: 'app-strengths',
-  imports: [Icon, RevealDirective],
+  imports: [Icon, RevealDirective, SpotlightDirective],
   templateUrl: './strengths.html',
   styleUrl: './strengths.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

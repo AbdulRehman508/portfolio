@@ -74,6 +74,28 @@
   box-shadow: var(--shadow-lg);
 }
 
+/* Cursor-tracked highlight, driven by appSpotlight. */
+.card.has-spotlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    260px circle at var(--spot-x, 50%) var(--spot-y, 0),
+    color-mix(in srgb, var(--accent, var(--brand-500)) 18%, transparent),
+    transparent 65%
+  );
+  opacity: var(--spot-opacity, 0);
+  pointer-events: none;
+  transition: opacity 280ms var(--ease);
+  z-index: 0;
+}
+
+.card.has-spotlight > * {
+  position: relative;
+  z-index: 1;
+}
+
 .tag {
   display: inline-flex;
   align-items: center;

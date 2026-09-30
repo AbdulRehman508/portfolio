@@ -4,12 +4,13 @@ import { PROJECTS } from '../../../../core/data/portfolio.data';
 import { Project } from '../../../../core/models/portfolio.model';
 import { Icon } from '../../../../shared/components/icon/icon';
 import { RevealDirective } from '../../../../shared/directives/reveal.directive';
+import { SpotlightDirective } from '../../../../shared/directives/spotlight.directive';
 
 const ALL = 'All';
 
 @Component({
   selector: 'app-projects',
-  imports: [Icon, RevealDirective],
+  imports: [Icon, RevealDirective, SpotlightDirective],
   templateUrl: './projects.html',
   styleUrl: './projects.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

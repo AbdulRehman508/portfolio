@@ -4,15 +4,35 @@
 
 <main id="main">
   <app-hero />
-  <app-about />
-  <app-skills />
-  <app-experience />
-  <app-projects />
-  <app-strengths />
-  <app-contact />
+
+  <!--
+    Incremental hydration: every section is rendered on the server, so the HTML a
+    crawler sees is complete, but the JavaScript for it only boots when the
+    section reaches the viewport.
+  -->
+  @defer (hydrate on viewport) {
+    <app-about />
+  }
+  @defer (hydrate on viewport) {
+    <app-skills />
+  }
+  @defer (hydrate on viewport) {
+    <app-experience />
+  }
+  @defer (hydrate on viewport) {
+    <app-projects />
+  }
+  @defer (hydrate on viewport) {
+    <app-strengths />
+  }
+  @defer (hydrate on interaction; hydrate on viewport) {
+    <app-contact />
+  }
 </main>
 
 <app-footer />
+
+<app-command-palette />
 
 <button
   type="button"

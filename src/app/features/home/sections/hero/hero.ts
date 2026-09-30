@@ -11,6 +11,7 @@ import { isPlatformBrowser } from '@angular/common';
 
 import { PROFILE, STATS } from '../../../../core/data/portfolio.data';
 import { Icon } from '../../../../shared/components/icon/icon';
+import { CountUpDirective } from '../../../../shared/directives/count-up.directive';
 import { RevealDirective } from '../../../../shared/directives/reveal.directive';
 
 const ROTATING_ROLES = [
@@ -22,7 +23,7 @@ const ROTATING_ROLES = [
 
 @Component({
   selector: 'app-hero',
-  imports: [Icon, RevealDirective],
+  imports: [Icon, RevealDirective, CountUpDirective],
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

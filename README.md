@@ -18,6 +18,15 @@ server-side rendering with full static prerendering.
 - **SEO ready** — title/meta/Open Graph tags plus `Person` JSON-LD, emitted into the
   prerendered HTML.
 - **Accessible** — landmarks, skip link, focus-visible styles, `aria-*` on nav, drawer and form.
+- **Incremental hydration** — every section below the hero is server-rendered but only hydrates
+  when it scrolls into view (`@defer (hydrate on viewport)` + `withIncrementalHydration()`), so the
+  initial JavaScript cost is the hero alone while crawlers still get the whole page.
+- **Command palette** — <kbd>⌘K</kbd> / <kbd>Ctrl K</kbd> opens a searchable jump list over
+  sections, projects and actions, with arrow-key navigation and roving `aria-selected`.
+- **Motion with restraint** — count-up stats, cursor-tracked card spotlights, View Transitions on
+  the theme switch; every one of them is skipped under `prefers-reduced-motion`.
+- **Social preview** — a generated 1200×630 OG image (`public/og-image.png`) so the link renders
+  as a card on LinkedIn and WhatsApp.
 - **Zero UI dependencies** — no component library, no icon package; icons are inline SVG.
 
 ## Project structure
@@ -62,6 +71,12 @@ machine as `Abdul-Rehman-CV.pdf` regardless of the stored name (`PROFILE.resumeF
 
 To regenerate the portrait from a new source image, crop it to 4:5 and export around 840×1050
 as JPEG — anything in `public/` ships as-is, so keep large originals in `design/`.
+
+## Before sharing the link
+
+Set `url` in [`site.config.ts`](src/app/core/config/site.config.ts) to the live origin (e.g.
+`https://abdul-rehman.vercel.app`). LinkedIn and WhatsApp drop relative `og:image` paths, so the
+share card stays blank until this is filled in.
 
 ## Contact form delivery
 

@@ -97,7 +97,7 @@
   <ul class="container hero__stats">
     @for (stat of stats; track stat.label; let i = $index) {
       <li class="hero__stat" [appReveal]="i * 90">
-        <strong>{{ stat.value }}</strong>
+        <strong appCountUp>{{ stat.value }}</strong>
         <span>{{ stat.label }}</span>
       </li>
     }

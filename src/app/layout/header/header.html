@@ -26,6 +26,12 @@
     </nav>
 
     <div class="header__actions">
+      <button type="button" class="header__search" (click)="openPalette()">
+        <app-icon name="sparkle" [size]="15" />
+        <span>Quick jump</span>
+        <kbd>{{ shortcutLabel() }}</kbd>
+      </button>
+
       <button
         type="button"
         class="icon-btn"

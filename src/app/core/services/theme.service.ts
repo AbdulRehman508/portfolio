@@ -34,7 +34,25 @@ export class ThemeService {
   }
 
   toggle(): void {
-    this._theme.update((theme) => (theme === 'dark' ? 'light' : 'dark'));
+    const flip = () => this._theme.update((theme) => (theme === 'dark' ? 'light' : 'dark'));
+
+    // Cross-fade the whole page where the browser supports it; plain flip elsewhere.
+    const startViewTransition = (
+      this.document as Document & {
+        startViewTransition?: (callback: () => void) => unknown;
+      }
+    ).startViewTransition;
+
+    const reducedMotion =
+      this.isBrowser &&
+      this.document.defaultView?.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!this.isBrowser || reducedMotion || typeof startViewTransition !== 'function') {
+      flip();
+      return;
+    }
+
+    startViewTransition.call(this.document, flip);
   }
 
   set(theme: Theme): void {

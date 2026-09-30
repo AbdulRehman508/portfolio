@@ -28,6 +28,7 @@
       @for (project of visibleProjects(); track project.title; let i = $index) {
         <article
           class="card card--hover project"
+          appSpotlight
           [style.--accent]="project.accent"
           [appReveal]="i * 90"
         >
